@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { UsersContext } from '../context/UsersContext';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -6,6 +8,7 @@ import {
   StyleSheet,
   Alert,
 } from 'react-native';
+import axios from 'axios';
 
 import AppButton from '../components/AppButton';
 import AppInput from '../components/AppInput';
@@ -13,8 +16,9 @@ import AppInput from '../components/AppInput';
 export default function SignupScreen() {
   const [username, setUsername] = useState('');
   const navigation = useNavigation<any>();
+  const { addUser } = useContext(UsersContext);
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
     if (!username.trim()) {
       Alert.alert(
         'Missing Username',
@@ -23,7 +27,23 @@ export default function SignupScreen() {
       return;
     }
 
-    navigation.navigate('Map');
+    try {
+      await axios.get(
+  `https://api.github.com/users/${username}`
+);
+
+addUser({
+  id: Date.now(),
+  login: username,
+});
+
+navigation.navigate('Map');
+    } catch (error) {
+      Alert.alert(
+        'User Not Found',
+        'GitHub user does not exist'
+      );
+    }
   };
 
   return (
@@ -47,7 +67,6 @@ export default function SignupScreen() {
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

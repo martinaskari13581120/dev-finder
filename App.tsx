@@ -1,5 +1,10 @@
 import AppNavigator from './src/navigation/AppNavigator';
+import UsersProvider from './src/context/UsersContext';
 
 export default function App() {
-  return <AppNavigator />;
+  return (
+    <UsersProvider>
+      <AppNavigator />
+    </UsersProvider>
+  );
 }
