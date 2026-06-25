@@ -10,7 +10,7 @@
         "latitude": 37.78796109088732,
         "longitude": -122.41171214729549
       },
-      "id": 1
+      "id": "1"
     },
     {
       "login": "timbl",
@@ -22,7 +22,7 @@
         "latitude": 37.79282406698407,
         "longitude": -122.39881340414287
       },
-      "id": 2
+      "id": "2"
     },
     {
       "login": "gvanrossum",
@@ -34,7 +34,7 @@
         "latitude": 37.790605642105255,
         "longitude": -122.39324949681759
       },
-      "id": 3
+      "id": "3"
     },
     {
       "login": "yyx990803",
@@ -46,7 +46,56 @@
         "latitude": 37.724668200801624,
         "longitude": -122.39550791680813
       },
-      "id": 4
+      "id": "4"
+    },
+    {
+      "id": "jLzxgfedZFo",
+      "login": "octocat123"
+    },
+    {
+      "id": "G1hZvujd9Ow",
+      "login": "gaearon"
+    },
+    {
+      "id": "Q13uY7iXq30",
+      "login": "gaearon"
+    },
+    {
+      "id": "DTqNxiylju8",
+      "login": "torvalds"
+    },
+    {
+      "id": "CLveWhW8ewM",
+      "login": "torvalds"
+    },
+    {
+      "id": "1ZpFzp8vQeU",
+      "login": "torvalds"
+    },
+    {
+      "id": "8obkFMDnVA4",
+      "login": "octocat"
+    },
+    {
+      "id": "tD5gMbBIOhQ",
+      "login": "octocat"
+    },
+    {
+      "id": "6pB9YeeYNck",
+      "login": "octocat"
+    },
+    {
+      "id": "wPm_qH9pDkY",
+      "login": "octocat"
+    },
+    {
+      "id": "RST20sSRjaU",
+      "login": "octocat"
+    },
+    {
+      "id": "Vn0ezHVkNLw",
+      "login": "octocat"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

@@ -11,24 +11,37 @@ export default function MapScreen() {
 
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);
+
   useEffect(() => {
-  getLocation();
-}, []);
+    console.log('MapScreen mounted');
+    getLocation();
+  }, []);
 
-const getLocation = async () => {
-  const { status } =
-    await Location.requestForegroundPermissionsAsync();
+  const getLocation = async () => {
+    try {
+      console.log('getLocation started');
 
-  if (status !== 'granted') {
-    return;
-  }
+      const { status } =
+        await Location.requestForegroundPermissionsAsync();
 
-  const location =
-    await Location.getCurrentPositionAsync({});
+      console.log('Permission:', status);
 
-  setLatitude(location.coords.latitude);
-  setLongitude(location.coords.longitude);
-};
+      if (status !== 'granted') {
+        console.log('Location permission denied');
+        return;
+      }
+
+      const location = await Location.getCurrentPositionAsync({
+  accuracy: Location.Accuracy.Lowest,
+});
+      console.log('Location:', location);
+
+      setLatitude(location.coords.latitude);
+      setLongitude(location.coords.longitude);
+    } catch (error) {
+      console.log('LOCATION ERROR:', error);
+    }
+  };
 
   console.log('Users:', users);
   console.log('Count:', users.length);
@@ -39,9 +52,14 @@ const getLocation = async () => {
 
       <View style={styles.map}>
         <Text>Map Placeholder</Text>
-        
-        <Text>Latitude: {latitude}</Text>
-        <Text>Longitude: {longitude}</Text>
+
+        <Text>
+          Latitude: {latitude ?? 'Loading...'}
+        </Text>
+
+        <Text>
+          Longitude: {longitude ?? 'Loading...'}
+        </Text>
 
         <Text style={styles.users}>
           Users Loaded: {users.length}

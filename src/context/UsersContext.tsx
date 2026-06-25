@@ -17,17 +17,31 @@ export default function UsersProvider({
   }, []);
 
   const loadUsers = async () => {
-    setUsers([
-      { id: 1 },
-      { id: 2 },
-      { id: 3 },
-      { id: 4 },
-    ]);
-  };
+  try {
+    const response = await axios.get(
+      'http://10.0.2.2:3000/users'
+    );
+
+    console.log('RESPONSE:', response.data);
+
+    setUsers(response.data);
+  } catch (error) {
+    console.log('API ERROR:', error);
+  }
+};
 
   const addUser = async (user: any) => {
-    setUsers((prev) => [...prev, user]);
-  };
+  try {
+    const response = await axios.post(
+      'http://10.0.2.2:3000/users',
+      user
+    );
+
+    setUsers((prev) => [...prev, response.data]);
+  } catch (error) {
+    console.log('ADD USER ERROR:', error);
+  }
+};
 
   return (
     <UsersContext.Provider
